@@ -24,118 +24,50 @@
   get users
 </button>
 
+
+<hr>
 <button id="get-messages">
-  get users
+  get messages
+</button>
+
+<button id="post-message">
+  post message
 </button>
 <hr>
 
-<script src="functions.js">
+<script src="functions.js"></script>
 
-</script>
+<script src="user.js"></script>
+<script src="message.js"></script>
+<script src="token.js"></script>
+<script src="auth.js"></script>
 <script>
     var URL = 'http://cryptic-taiga-39170.herokuapp.com';
 
     token.echo();
 
     document.getElementById('reg').addEventListener('click', function (){
-       console.log('click');
-
-        var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function() {
-            if (this.readyState == 4) {
-                if (this.status == 422){
-                    echo('имя занято');
-                }
-                if (this.status == 201) {
-                    echo('пользователь зарегистрирован');
-                }
-            }
-        };
-        xhr.open('POST', URL + '/users/', true);
-        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xhr.send("name=testman1&email=mail1@mail.com&password=123123&password_confirmation=123123");
-
+        user.create('testmand2','mail12@mail.com','123123', '123123');
     });
 
 
 
     document.getElementById('auth').addEventListener('click', function (){
-        console.log('click');
-
-        var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                var response = this.responseText;
-                console.dir(response);
-                response = JSON.parse(response);
-                console.dir(response);
-                console.log(response.auth_token);
-                localStorage.setItem('token', response.auth_token);
-                document.getElementById("token").innerHTML = response.auth_token;
-                echo(response);
-            }
-        };
-
-
-        xhr.open("POST", URL + "/authenticate/", true);
-        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xhr.send("email=mail@mail.com&password=123123");
+      auth.login('mail@mail.com', '123123');
     });
 
-    document.getElementById('auth').addEventListener('click', function (){
-        console.log('click');
 
-        var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                echo(this.responseText);
-            }
-        };
-        xhr.open("POST",  URL + "/authenticate/", true);
-        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xhr.send("email=mail@mail.com&password=123123");
-    });
-
-    document.getElementById('get-users').addEventListener('click', function (){
-        console.log('click');
-
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                echo(this.responseText);
-            }
-        };
-        xhttp.open("GET", URL + "/users/", true);
-        xhttp.setRequestHeader("Authorization", token.get());
-        xhttp.send();
+    document.getElementById('get-users').addEventListener('click', function(){
+       user.list();
     });
 
     document.getElementById('get-messages').addEventListener('click', function (){
-        console.log('click');
-
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                echo(this.responseText);
-            }
-        };
-        xhttp.open("GET", URL + "/messages/", true);
-        xhttp.setRequestHeader("Authorization", token.get());
-        xhttp.send();
+        message.list();
     });
 
-    document.getElementById('post-message').addEventListener('click', function (){
-        console.log('click');
 
-        var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                echo(this.responseText);
-            }
-        };
-        xhr.open("POST",  URL + "/authenticate/", true);
-        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xhr.send("email=mail@mail.com&password=123123");
+    document.getElementById('post-message').addEventListener('click', function (){
+        message.create('testmessage');
     });
 </script>
 
