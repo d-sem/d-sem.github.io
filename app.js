@@ -1,4 +1,6 @@
 var URL = 'https://cryptic-taiga-39170.herokuapp.com';
+var messages = [];
+var users = [];
 
 token.echo();
 
@@ -62,13 +64,6 @@ document.getElementById('out').addEventListener('click', function(){
 
 document.getElementById('get-messages').addEventListener('click', function (){
     message.list();
-    console.log(message.data);
-    var data = message.data;
-    data = JSON.parse(data);
-    var msg = '';
-    for (var i = 0; i < data.lenght; i++){
-
-    }
 });
 
 
