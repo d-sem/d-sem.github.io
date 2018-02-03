@@ -32,6 +32,10 @@ var user = {
             if (this.readyState == 4 && this.status == 200) {
                 echo(this.responseText);
             }
+
+            if (this.readyState == 4 && this.status == 401) {
+                echo('нет доступа');
+            }
         };
         xhttp.open("GET", URL + "/users/", true);
         xhttp.setRequestHeader("Authorization", token.get());

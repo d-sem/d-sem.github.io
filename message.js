@@ -4,7 +4,7 @@ var message = {
 
         var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
+            if (this.readyState == 4 && this.status == 201) {
                 echo(this.responseText);
             } else {
                 echo('ошибка');
@@ -21,7 +21,7 @@ var message = {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                echo(this.responseText);
+                message.echo((this.responseText));
             }
         };
         xhttp.open("GET", URL + "/messages/", true);
@@ -38,5 +38,9 @@ var message = {
         xhttp.open("GET", URL + "/messages/" . id, true);
         xhttp.setRequestHeader("Authorization", token.get());
         xhttp.send();
-    }
+    },
+    echo: function(data){
+        this.data = data;
+    },
+    data: null,
 }

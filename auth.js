@@ -21,5 +21,9 @@ var auth = {
         var query = 'email=' + email + '&password=' + pass;
 
         xhr.send(query);
+    },
+    out: function(){
+        token.remove();
+        document.getElementById("token").innerHTML = token.get();
     }
 }

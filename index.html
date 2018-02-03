@@ -8,12 +8,27 @@
 <p id ='token'></p>
 <hr>
 <p id="demo"></p>
-<button id="reg">
- reg
-</button>
-<button id="auth">
-    auth
-</button>
+
+<form id="form-reg">
+    <input type="text" name="name">
+    <input type="text" name="email">
+    <input type="text" name="pass1">
+    <input type="text" name="pass2">
+    <button id="reg">
+        reg
+    </button>
+</form>
+<hr>
+
+<form id="form-auth">
+    <input type="text" name="email">
+    <input type="text" name="pass">
+    <button id="auth">
+        auth
+    </button>
+</form>
+
+
 
 <button id="out">
     out
@@ -30,9 +45,13 @@
   get messages
 </button>
 
-<button id="post-message">
-  post message
-</button>
+<form id="post-message">
+    <input name="text" required>
+    <button id="">
+        post message
+    </button>
+</form>
+
 <hr>
 
 <script src="functions.js"></script>
@@ -41,34 +60,8 @@
 <script src="message.js"></script>
 <script src="token.js"></script>
 <script src="auth.js"></script>
-<script>
-    var URL = 'https://cryptic-taiga-39170.herokuapp.com';
+<script src="app.js">
 
-    token.echo();
-
-    document.getElementById('reg').addEventListener('click', function (){
-        user.create('testmand2','mail12@mail.com','123123', '123123');
-    });
-
-
-
-    document.getElementById('auth').addEventListener('click', function (){
-      auth.login('mail@mail.com', '123123');
-    });
-
-
-    document.getElementById('get-users').addEventListener('click', function(){
-       user.list();
-    });
-
-    document.getElementById('get-messages').addEventListener('click', function (){
-        message.list();
-    });
-
-
-    document.getElementById('post-message').addEventListener('click', function (){
-        message.create('testmessage');
-    });
 </script>
 
 </body>
