@@ -1,13 +1,27 @@
 var URL = 'https://cryptic-taiga-39170.herokuapp.com';
 var messages = [];
 var users = [];
+var length = 10;
 
 token.echo();
+
+// регистрация
+
+document.getElementById('auth').addEventListener('click', function(e) {
+    e.preventDefault();
+    var el = document.getElementById('form-auth');
+    el.style.display = (el.style.display == 'none') ? 'block' : 'none';
+});
+
+document.getElementById('reg').addEventListener('click', function(e) {
+    e.preventDefault();
+    var el = document.getElementById('form-reg');
+    el.style.display = (el.style.display == 'none') ? 'block' : 'none';
+});
 
 document.getElementById('form-reg').addEventListener('submit', function (e){
     e.preventDefault();
     var data = document.getElementById('form-reg');
-    // console.log(name);
     var form = {
         name:  data.elements.name.value,
         email: data.elements.email.value,
