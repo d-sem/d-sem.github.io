@@ -5,6 +5,8 @@ var message = {
         var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 201) {
+
+                message.list();
                 echo(this.responseText);
             } else {
                 echo('ошибка');
@@ -14,6 +16,7 @@ var message = {
         xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xhr.setRequestHeader("Authorization", token.get());
         xhr.send('text=' + msg);
+
     },
     list: function(){
         console.log('messages-list');
@@ -49,23 +52,34 @@ var message = {
     data: null,
     print: function(data) {
         var output = document.createElement('div');
+        data = data.slice(-10);
         for (var i = 0; i < data.length; i++){
             var div = document.createElement('div');
             div.className = 'message';
 
-            var userId = document.createElement('p');
+            var time = document.createElement('span');
+            time.className = 'text';
+            var formattedTime = formatDate(new Date(data[i].created_at));
+            time.innerHTML = formattedTime;
+            div.appendChild(time);
+
+            var userId = document.createElement('span');
             userId.className = 'name';
             userId.innerHTML = data[i].user_id;
             div.appendChild(userId);
+            user.get(data[i].user_id);
 
-            var text = document.createElement('p');
+
+
+            var text = document.createElement('span');
             text.className = 'text';
             text.innerHTML = data[i].text;
             div.appendChild(text);
             output.appendChild(div);
         }
         // console.dir(output);
-        echo(output.innerHTML);
+        chat(output.innerHTML);
     },
+    length: length,
     pull: [],
 }
