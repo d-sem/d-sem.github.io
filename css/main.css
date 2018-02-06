@@ -1,6 +1,9 @@
 body {
-    width: 700px;
-    margin: auto;
+    width: 600px;
+    margin: 10px auto ;
+    padding: 20px;
+    border:1px solid black;
+    border-radius: 10px;
 }
 
 div.message {
@@ -8,4 +11,25 @@ div.message {
     border-radius: 5px;
     padding: 5px;
     margin-bottom: 10px;
+}
+
+div.message * {
+    margin-right: 5px;
+}
+
+#auth-panel {
+    text-align: right;
+}
+
+#form-auth,
+#form-reg{
+    display: none;
+}
+
+.visible {
+    display: block;
+}
+
+#post-message input{
+    width: 86%;
 }
