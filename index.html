@@ -6,57 +6,80 @@
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
+    <div id="auth-panel">
+        <button id="auth">login</button>
+        <button id="reg">reg</button>
+        <button id="out">out</button>
+        <hr>
+    </div>
 <p id ='token'></p>
 <hr>
-<p id="demo"></p>
+<p id="demo"></p><hr>
+    <p id="chat"></p>
 
 <form id="form-reg">
-    <input type="text" name="name">
-    <input type="text" name="email">
-    <input type="text" name="pass1">
-    <input type="text" name="pass2">
-    <button id="reg">
+    <label>
+        <b>Name</b>
+        <input type="text" name="name" required>
+    </label>
+    <br>
+    <label>
+        <b>Email</b>
+        <input type="text" name="email" required>
+    </label>
+    <br>
+    <label>
+        <b>Password</b>
+        <input type="text" name="pass1" required>
+    </label>
+    <br>
+    <label>
+        <b>Password confirm</b>
+        <input type="text" name="pass2" required>
+    </label>
+    <br>
+    <button>
         reg
     </button>
 </form>
 <hr>
 
 <form id="form-auth">
-    <input type="text" name="email">
-    <input type="text" name="pass">
-    <button id="auth">
+    <label>
+        <b>Email</b>
+        <input type="text" name="email" required>
+    </label>
+    <br>
+    <label>
+        <b>Password</b>
+        <input type="text" name="pass" required>
+    </label>
+    <br>
+    <button>
         auth
     </button>
 </form>
 
 
-
-<button id="out">
-    out
-</button>
-
 <hr>
 <button id="get-users">
   get users
 </button>
-
-
-<hr>
 <button id="get-messages">
   get messages
 </button>
 
+<hr>
 <form id="post-message">
     <input name="text" required>
     <button id="">
-        post message
+        post
     </button>
 </form>
 
-<hr>
+
 
 <script src="functions.js"></script>
-
 <script src="user.js"></script>
 <script src="message.js"></script>
 <script src="token.js"></script>
