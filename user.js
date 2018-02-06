@@ -6,10 +6,10 @@ var user = {
         xhr.onreadystatechange = function() {
             if (this.readyState == 4) {
                 if (this.status == 422){
-                    echo('имя занято');
+                    echo('Ошибка');
                 }
                 if (this.status == 201) {
-                    echo('пользователь зарегистрирован');
+                    echo('Успех');
                 }
             }
         };
@@ -21,7 +21,6 @@ var user = {
                     '&password_confirmation=' + pass2;
 
         xhr.send(query);
-        // xhr.send('name=testman1&email=mail1@mail.com&password=123123&password_confirmation=123123');
 
     },
     list: function (){
@@ -38,6 +37,17 @@ var user = {
             }
         };
         xhttp.open("GET", URL + "/users/", true);
+        xhttp.setRequestHeader("Authorization", token.get());
+        xhttp.send();
+    },
+    get: function(id){
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                echo(this.responseText);
+            }
+        };
+        xhttp.open("GET", URL + "/users/" . id, true);
         xhttp.setRequestHeader("Authorization", token.get());
         xhttp.send();
     }
