@@ -52,7 +52,7 @@ var message = {
     data: null,
     print: function(data) {
         var output = document.createElement('div');
-        data = data.slice(-10);
+        data = data.slice(length);
         for (var i = 0; i < data.length; i++){
             var div = document.createElement('div');
             div.className = 'message';

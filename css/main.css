@@ -33,3 +33,7 @@ div.message * {
 #post-message input{
     width: 86%;
 }
+
+#get-data {
+    display: none;
+}

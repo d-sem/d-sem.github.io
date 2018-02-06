@@ -9,7 +9,9 @@ var user = {
                     echo('Ошибка');
                 }
                 if (this.status == 201) {
-                    echo('Успех');
+                    // echo('Успех');
+                    form.off('form-reg');
+                    auth.login(email, pass1);
                 }
             }
         };
@@ -19,9 +21,7 @@ var user = {
                     '&email=' + email +
                     '&password=' + pass1 +
                     '&password_confirmation=' + pass2;
-
         xhr.send(query);
-
     },
     list: function (){
         console.log('click');

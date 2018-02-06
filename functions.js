@@ -26,6 +26,31 @@ function formatDate(date) {
     return strTime;
 }
 
+function checkLogin()
+{
+    console.log('check login...')
+    if (validate) {
+        console.log('validate ok');
+        message.list();
+        button.off('auth');
+        button.off('reg');
+        button.on('out');
+        button.on('get-users');
+        button.on('get-messages');
+        form.on('post-message');
+        message.list()
+    } else {
+        console.log('validate not ok');
+        button.on('auth');
+        button.on('reg');
+        button.off('get-users');
+        button.off('get-messages');
+        button.off('out');
+        form.off('post-message');
+        chat('');
+    }
+
+}
 
 
 
