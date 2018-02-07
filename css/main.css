@@ -17,6 +17,10 @@ div.message * {
     margin-right: 5px;
 }
 
+div.message * {
+    margin-right: 5px;
+}
+
 #auth-panel {
     text-align: right;
 }
