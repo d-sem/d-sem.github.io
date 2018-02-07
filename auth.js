@@ -5,14 +5,9 @@ var auth = {
         var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                var response = this.responseText;
-                // console.dir(response);
-                response = JSON.parse(response);
-                // console.dir(response);
-                // console.log(response.auth_token);
+                console.log('login success');
+                var response = JSON.parse(this.responseText);
                 token.set(response.auth_token);
-                // document.getElementById("token").innerHTML = response.auth_token;
-                // echo(response.auth_token);
                 auth.validate();
                 form.off('form-auth');
                 message.list();
@@ -28,24 +23,25 @@ var auth = {
     out: function(){
         token.remove();
         this.validate();
-        // document.getElementById("token").innerHTML = token.get();
     },
     validate: function(){
-        console.log('click');
+        console.log('validate login');
 
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
+                console.log('validate success');
                 validate = true;
                 checkLogin();
             }
 
             if (this.readyState == 4 && this.status == 401) {
+                console.log('validate fail');
                 validate = false;
                 checkLogin();
             }
         };
-        xhttp.open("GET", URL + "/users/", true);
+        xhttp.open("GET", URL + "/messages?last=1", true);
         xhttp.setRequestHeader("Authorization", token.get());
         xhttp.send();
     }
