@@ -10,6 +10,7 @@ var user = {
                 }
                 if (this.status == 201) {
                     // echo('Успех');
+                    echo('');
                     form.off('form-reg');
                     auth.login(email, pass1);
                 }
@@ -43,6 +44,7 @@ var user = {
     get: function(id){
         console.log('get user');
         if (this.data[id]) {
+            console.log('user exists - no xhr request');
             return this.data[id];
         }
 
@@ -65,9 +67,8 @@ var user = {
     create_pull: function(data){
         console.log('create pull');
         data = JSON.parse(data);
-        console.dir(data);
+        // console.dir(data);
         for (var i = 0; i < data.length; i++) {
-            console.log('for');
             var user_id = data[i].id;
             var user_name = data[i].name;
             user.data[user_id] = user_name;
