@@ -41,7 +41,7 @@ var user = {
         xhttp.setRequestHeader("Authorization", token.get());
         xhttp.send();
     },
-    get: function(id){
+    get_username: function(id){
         console.log('get user');
         if (this.data[id]) {
             console.log('user exists - no xhr request');
@@ -52,7 +52,7 @@ var user = {
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 console.log('user get success');
-                this.data[id] = JSON.parse(this.responseText).name;
+                user.data[id] = JSON.parse(this.responseText).name;
             }
 
             if (this.readyState == 4 && this.status == 404) {
@@ -61,6 +61,30 @@ var user = {
             }
         };
         xhttp.open("GET", URL + "/users/" + id, true);
+        xhttp.setRequestHeader("Authorization", token.get());
+        xhttp.send();
+    },
+
+    get_userid: function(){
+        console.log('get user id');
+        if (this.id) {
+            console.log('user id exists');
+            return this.id;
+        }
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                user.id = JSON.parse(this.responseText);
+                console.log('user id get success' + user.id);
+            }
+
+            if (this.readyState == 4 && this.status == 404) {
+                console.log('user get fail');
+                echo('пользователь не существует');
+            }
+        };
+        xhttp.open("GET", URL + "/users?user_id=true", true);
         xhttp.setRequestHeader("Authorization", token.get());
         xhttp.send();
     },
@@ -74,5 +98,6 @@ var user = {
             user.data[user_id] = user_name;
         }
     },
+    id: null,
     data: []
 }
