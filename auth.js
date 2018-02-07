@@ -38,6 +38,7 @@ var auth = {
             if (this.readyState == 4 && this.status == 401) {
                 console.log('validate fail');
                 validate = false;
+                user.get_userid();
                 checkLogin();
             }
         };
