@@ -17,12 +17,25 @@ div.message * {
     margin-right: 5px;
 }
 
-div.message * {
-    margin-right: 5px;
-}
 
 #auth-panel {
-    text-align: right;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+#auth-panel button{
+    display: none
+}
+
+#auth-panel div{
+    position: absolute;
+    right: 0;
+    top: -1px;
+}
+
+h1 {
+    font-size: 21px;
+    margin-top: 0px;
 }
 
 #form-auth,
@@ -35,7 +48,11 @@ div.message * {
 }
 
 #post-message input{
-    width: 86%;
+    width: 86.3%;
+}
+
+#chat {
+    margin-bottom: 20px
 }
 
 #get-data {
