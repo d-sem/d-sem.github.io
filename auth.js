@@ -1,5 +1,9 @@
+/*
+ * Модуль аутентификации
+ */
+
 var auth = {
-    login: function(email, pass){
+    login: function(email, pass) {
         console.log('login');
 
         var xhr = new XMLHttpRequest();
@@ -20,11 +24,11 @@ var auth = {
 
         xhr.send(query);
     },
-    out: function(){
+    out: function() {
         token.remove();
         this.validate();
     },
-    validate: function(){
+    validate: function() {
         console.log('validate login');
 
         var xhttp = new XMLHttpRequest();
@@ -42,6 +46,7 @@ var auth = {
                 checkLogin();
             }
         };
+
         xhttp.open("GET", URL + "/messages?last=1", true);
         xhttp.setRequestHeader("Authorization", token.get());
         xhttp.send();

@@ -1,3 +1,7 @@
+/*
+ * Основные используемые в приложении функции
+ */
+
 // вывод отладочных сообщений
 
 function echo(msg) {
@@ -17,11 +21,13 @@ function formatTime(date) {
     var minutes = date.getMinutes();
     var seconds = date.getSeconds();
     var ampm = hours >= 12 ? 'pm' : 'am';
+
     hours = hours % 12;
     hours = hours ? hours : 12; // the hour '0' should be '12'
     minutes = minutes < 10 ? '0'+minutes : minutes;
     seconds = seconds < 10 ? '0'+seconds : seconds;
     var strTime = hours + ':' + minutes + ':' + seconds + ' ' + ampm;
+
     return strTime;
 }
 
@@ -75,7 +81,6 @@ function addEventListeners()
         form.on('form-reg');
     });
 
-
     // регистрация
 
     document.getElementById('form-reg').addEventListener('submit', function (e){
@@ -108,7 +113,6 @@ function addEventListeners()
         auth.login(form.email,form.pass);
     });
 
-
     // выход
 
     document.getElementById('out').addEventListener('click', function(){
@@ -125,10 +129,27 @@ function addEventListeners()
             message.create(text);
         }
         data.elements.text.value = '';
+
         //todo: валидация
     });
 
-    // редактирование сообщений
+    // редактирование сообщений - инициализация формы отправки
+
+    document.getElementById('chat').addEventListener('click', function (e){
+        if (e.target.className == 'edit') {
+            form.on('edit-message');
+            form.off('post-message');
+
+            var text = document.getElementById('edit-message').elements.text;
+            var id = document.getElementById('edit-message').elements.id;
+            text.focus();
+            text.value = e.target.parentElement.getElementsByClassName('text')[0].innerHTML;
+            id.value = e.target.parentElement.dataset.message_id;
+
+        }
+    });
+
+    // редактирование сообщений - отправка формы
 
     document.getElementById('edit-message').addEventListener('submit', function (e){
         e.preventDefault();
@@ -155,22 +176,6 @@ function addEventListeners()
             message.remove(id);
 
             message.edit(id, 1);
-        }
-    });
-
-    // редактирование сообщений
-
-    document.getElementById('chat').addEventListener('click', function (e){
-        if (e.target.className == 'edit') {
-            form.on('edit-message');
-            form.off('post-message');
-
-            var text = document.getElementById('edit-message').elements.text;
-            var id = document.getElementById('edit-message').elements.id;
-            text.focus();
-            text.value = e.target.parentElement.getElementsByClassName('text')[0].innerHTML;
-            id.value = e.target.parentElement.dataset.message_id;
-
         }
     });
 }

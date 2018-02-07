@@ -1,3 +1,7 @@
+/*
+ * Модуль взаимодействия с сообщениями
+ */
+
 var message = {
     create: function(msg){
         console.log('post message');
@@ -60,7 +64,6 @@ var message = {
         xhr.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 201) {
                 message.list();
-                // echo(this.responseText);
             }
         };
         xhr.open("DELETE",  URL + "/messages/" + id, true);
@@ -85,12 +88,12 @@ var message = {
             var time = document.createElement('span');
             time.className = 'time';
             var formattedTime = formatTime(new Date(data[i].created_at));
-            time.innerHTML = formattedTime;
+            time.innerHTML = formattedTime + ' |';
             div.appendChild(time);
 
             var username = document.createElement('span');
             username.className = 'name';
-            username.innerHTML = user.get_username(data[i].user_id);
+            username.innerHTML = user.get_username(data[i].user_id) + ':';
             div.appendChild(username);
 
             if (data[i].user_id == user.id) {
@@ -101,7 +104,7 @@ var message = {
                     console.log('click edit')
                     var div = this.parentElement;
                     div.style.display = "none";
-                }
+                };
                 span.appendChild(txt);
                 div.appendChild(span);
             }
@@ -114,7 +117,7 @@ var message = {
                     console.log('click delete')
                     var div = this.parentElement;
                     div.style.display = "none";
-                }
+                };
                 span.appendChild(txt);
                 div.appendChild(span);
             }

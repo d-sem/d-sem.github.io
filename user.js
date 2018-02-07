@@ -1,3 +1,7 @@
+/*
+ * Модуль взаимодействия с пользователями
+ */
+
 var user = {
     create: function (name, email, pass1, pass2){
         console.log('create user');
@@ -9,7 +13,6 @@ var user = {
                     echo('Ошибка');
                 }
                 if (this.status == 201) {
-                    // echo('Успех');
                     echo('');
                     form.off('form-reg');
                     auth.login(email, pass1);
@@ -24,7 +27,7 @@ var user = {
                     '&password_confirmation=' + pass2;
         xhr.send(query);
     },
-    list: function (){
+    list: function() {
         console.log('get user list');
 
         var xhttp = new XMLHttpRequest();
@@ -32,16 +35,13 @@ var user = {
             if (this.readyState == 4 && this.status == 200) {
                 user.create_pull(this.responseText);
             }
-
-            // if (this.readyState == 4 && this.status == 401) {
-            //     echo('нет доступа');
-            // }
         };
+
         xhttp.open("GET", URL + "/users/", true);
         xhttp.setRequestHeader("Authorization", token.get());
         xhttp.send();
     },
-    get_username: function(id){
+    get_username: function(id) {
         console.log('get user');
         if (this.data[id]) {
             console.log('user exists - no xhr request');
@@ -64,8 +64,7 @@ var user = {
         xhttp.setRequestHeader("Authorization", token.get());
         xhttp.send();
     },
-
-    get_userid: function(){
+    get_userid: function() {
         console.log('get user id');
         var id = localStorage.getItem('user_id');
         if (id) {
@@ -91,10 +90,9 @@ var user = {
         xhttp.setRequestHeader("Authorization", token.get());
         xhttp.send();
     },
-    create_pull: function(data){
+    create_pull: function(data) {
         console.log('create pull');
         data = JSON.parse(data);
-        // console.dir(data);
         for (var i = 0; i < data.length; i++) {
             var user_id = data[i].id;
             var user_name = data[i].name;

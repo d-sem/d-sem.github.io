@@ -1,17 +1,17 @@
 var token = {
     id: 'token',
     key: 'token',
-    get: function(){
+    get: function() {
         return localStorage.getItem(this.key);
     },
-    echo: function(){
+    echo: function() {
         document.getElementById(this.id).innerHTML = this.get();
     },
-    remove: function(){
+    remove: function() {
         localStorage.removeItem(this.key);
         localStorage.removeItem('user_id');
     },
-    set: function(value){
+    set: function(value) {
         localStorage.setItem('token', value);
     }
 }
