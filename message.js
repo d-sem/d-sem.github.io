@@ -38,6 +38,21 @@ var message = {
         xhttp.setRequestHeader("Authorization", token.get());
         xhttp.send();
     },
+    remove: function(id){
+        console.log('delete message');
+
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 201) {
+                message.list();
+                // echo(this.responseText);
+            }
+        };
+        xhr.open("DELETE",  URL + "/messages/" + id, true);
+        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhr.setRequestHeader("Authorization", token.get());
+        xhr.send();
+    },
     echo: function(data){
         this.data = data;
         data = JSON.parse(data);
@@ -46,6 +61,7 @@ var message = {
     data: null,
     print: function(data) {
         var output = document.createElement('div');
+        user.get_userid();
         // data = data.slice(length);
         for (var i = 0; i < data.length; i++){
             var div = document.createElement('div');
@@ -59,9 +75,22 @@ var message = {
 
             var username = document.createElement('span');
             username.className = 'name';
-            username.innerHTML = user.get(data[i].user_id);
+            username.innerHTML = user.get_username(data[i].user_id);
             div.appendChild(username);
 
+            if (data[i].user_id == user.id) {
+                var span = document.createElement('span');
+                var txt = document.createTextNode("\u00D7"); // 	\u270E
+                span.dataset.message_id = data[i].id;
+                span.className = "delete";
+                span.onclick = function() {
+                    console.log('click delete')
+                    var div = this.parentElement;
+                    div.style.display = "none";
+                }
+                span.appendChild(txt);
+                div.appendChild(span);
+            }
 
             var text = document.createElement('span');
             text.className = 'text';
