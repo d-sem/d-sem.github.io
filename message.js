@@ -27,7 +27,7 @@ var message = {
                 message.echo(this.responseText);
             }
         };
-        xhttp.open("GET", URL + "/messages/", true);
+        xhttp.open("GET", URL + "/messages?last=" + length, true);
         xhttp.setRequestHeader("Authorization", token.get());
         xhttp.send();
     },
@@ -45,30 +45,26 @@ var message = {
     echo: function(data){
         this.data = data;
         data = JSON.parse(data);
-        // echo(data)
-        console.log((data))
         this.print(data);
     },
     data: null,
     print: function(data) {
         var output = document.createElement('div');
-        data = data.slice(length);
+        // data = data.slice(length);
         for (var i = 0; i < data.length; i++){
             var div = document.createElement('div');
             div.className = 'message';
 
             var time = document.createElement('span');
             time.className = 'text';
-            var formattedTime = formatDate(new Date(data[i].created_at));
+            var formattedTime = formatTime(new Date(data[i].created_at));
             time.innerHTML = formattedTime;
             div.appendChild(time);
 
-            var userId = document.createElement('span');
-            userId.className = 'name';
-            userId.innerHTML = data[i].user_id;
-            div.appendChild(userId);
-            user.get(data[i].user_id);
-
+            var username = document.createElement('span');
+            username.className = 'name';
+            username.innerHTML = user.get(data[i].user_id);
+            div.appendChild(username);
 
 
             var text = document.createElement('span');
@@ -77,9 +73,8 @@ var message = {
             div.appendChild(text);
             output.appendChild(div);
         }
-        // console.dir(output);
         chat(output.innerHTML);
     },
     length: length,
-    pull: [],
+    pull: [] //todo: сделать опциональные запросы
 }
