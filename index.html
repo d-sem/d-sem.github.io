@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>REST Ruby chat</title>
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
@@ -10,40 +10,36 @@
         <button id="auth">login</button>
         <button id="reg">reg</button>
         <button id="out">out</button>
-
     </div>
-<p id ='token'></p>
-<p id="demo"></p>
+
+    <div id="demo"></div>
     <div id="chat"></div>
 
-<form id="form-reg">
-    <label>
-        <b>Name</b>
-        <input type="text" name="name" required>
-    </label>
-    <br>
-    <label>
-        <b>Email</b>
-        <input type="text" name="email" required>
-    </label>
-    <br>
-    <label>
-        <b>Password</b>
-        <input type="password" name="pass1" required>
-    </label>
-    <br>
-    <label>
-        <b>Password confirm</b>
-        <input type="password" name="pass2" required>
-    </label>
-    <br>
-    <button>
-        reg
-    </button>
-</form>
-
-<form id="form-auth">
-    <label>
+    <form id="form-reg">
+        <label>
+            <b>Name</b>
+            <input type="text" name="name" required>
+        </label>
+        <br>
+        <label>
+            <b>Email</b>
+            <input type="text" name="email" required>
+        </label>
+        <br>
+        <label>
+            <b>Password</b>
+            <input type="password" name="pass1" required>
+        </label>
+        <br>
+        <label>
+            <b>Password confirm</b>
+            <input type="password" name="pass2" required>
+        </label>
+        <br>
+        <button>reg</button>
+    </form>
+    <form id="form-auth">
+        <label>
         <b>Email</b>
         <input type="text" name="email" required>
     </label>
@@ -53,40 +49,21 @@
         <input type="password" name="pass" required>
     </label>
     <br>
-    <button>
-        auth
-    </button>
-</form>
+    <button>auth</button>
+    </form>
 
-
-    <div id="get-data">
-<button id="get-users">
-  get users
-</button>
-<button id="get-messages">
-  get messages
-</button>
-    </div>
-
-
-<form id="post-message">
-    <input name="text" required>
-    <button type="submit">
-        post
-    </button>
-</form>
+    <form id="post-message">
+        <input name="text" required>
+        <button type="submit">post</button>
+    </form>
 
     <script src="button.js"></script>
     <script src="form.js"></script>
-<script src="functions.js"></script>
-<script src="user.js"></script>
-<script src="message.js"></script>
-<script src="token.js"></script>
-<script src="auth.js"></script>
-
-<script src="app.js">
-
-</script>
-
+    <script src="functions.js"></script>
+    <script src="user.js"></script>
+    <script src="message.js"></script>
+    <script src="token.js"></script>
+    <script src="auth.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
