@@ -24,31 +24,54 @@ var user = {
         xhr.send(query);
     },
     list: function (){
-        console.log('click');
+        console.log('get user list');
 
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                echo(this.responseText);
+                user.create_pull(this.responseText);
             }
 
-            if (this.readyState == 4 && this.status == 401) {
-                echo('нет доступа');
-            }
+            // if (this.readyState == 4 && this.status == 401) {
+            //     echo('нет доступа');
+            // }
         };
         xhttp.open("GET", URL + "/users/", true);
         xhttp.setRequestHeader("Authorization", token.get());
         xhttp.send();
     },
     get: function(id){
+        console.log('get user');
+        if (this.data[id]) {
+            return this.data[id];
+        }
+
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                echo(this.responseText);
+                console.log('user get success');
+                this.data[id] = JSON.parse(this.responseText).name;
+            }
+
+            if (this.readyState == 4 && this.status == 404) {
+                console.log('user get fail');
+                echo('пользователь не существует');
             }
         };
-        xhttp.open("GET", URL + "/users/" . id, true);
+        xhttp.open("GET", URL + "/users/" + id, true);
         xhttp.setRequestHeader("Authorization", token.get());
         xhttp.send();
-    }
+    },
+    create_pull: function(data){
+        console.log('create pull');
+        data = JSON.parse(data);
+        console.dir(data);
+        for (var i = 0; i < data.length; i++) {
+            console.log('for');
+            var user_id = data[i].id;
+            var user_name = data[i].name;
+            user.data[user_id] = user_name;
+        }
+    },
+    data: []
 }
