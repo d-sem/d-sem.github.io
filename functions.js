@@ -1,19 +1,18 @@
+// вывод отладочных сообщений
+
 function echo(msg) {
     document.getElementById("demo").innerHTML = msg;
 }
+
+// вывод чата
 
 function chat(msg) {
     document.getElementById("chat").innerHTML = msg;
 }
 
+// форматирование времени
 
-
-function isEmpty(str) {
-    return (!str || 0 === str.length);
-}
-
-
-function formatDate(date) {
+function formatTime(date) {
     var hours = date.getHours();
     var minutes = date.getMinutes();
     var seconds = date.getSeconds();
@@ -49,9 +48,81 @@ function checkLogin()
         form.off('post-message');
         chat('');
     }
-
 }
 
+function init()
+{
+    auth.validate();
+    user.list();
 
+    setInterval(auth.validate, 10000);
+}
+
+function addEventListeners()
+{
+    // появление форм по кнопкам
+
+    document.getElementById('auth').addEventListener('click', function(e) {
+        form.on('form-auth');
+        form.off('form-reg');
+    });
+
+    document.getElementById('reg').addEventListener('click', function(e) {
+        form.off('form-auth');
+        form.on('form-reg');
+    });
+
+
+    // регистрация
+
+    document.getElementById('form-reg').addEventListener('submit', function (e){
+        e.preventDefault();
+        var data = document.getElementById('form-reg');
+        var form = {
+            name:  data.elements.name.value,
+            email: data.elements.email.value,
+            pass1: data.elements.pass1.value,
+            pass2: data.elements.pass2.value
+        };
+
+        //todo: валидация
+
+        user.create(form.name,form.email,form.pass1, form.pass2);
+    });
+
+    // авторизация
+
+    document.getElementById('form-auth').addEventListener('click', function (e){
+        e.preventDefault();
+        var data = document.getElementById('form-auth');
+        var form = {
+            email: data.elements.email.value,
+            pass: data.elements.pass.value
+        };
+
+        //todo: валидация
+
+        auth.login(form.email,form.pass);
+    });
+
+
+    // выход
+
+    document.getElementById('out').addEventListener('click', function(){
+        auth.out();
+    });
+
+    // отправка сообщения
+
+    document.getElementById('post-message').addEventListener('submit', function (e){
+        e.preventDefault();
+        var data = document.getElementById('post-message');
+        var text = data.elements.text.value;
+
+        //todo: валидация
+
+        message.create(text);
+    });
+}
 
 
