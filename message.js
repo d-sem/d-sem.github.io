@@ -5,18 +5,14 @@ var message = {
         var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 201) {
-
                 message.list();
-                echo(this.responseText);
-            } else {
-                echo('ошибка');
+                // echo(this.responseText);
             }
         };
         xhr.open("POST",  URL + "/messages/", true);
         xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xhr.setRequestHeader("Authorization", token.get());
         xhr.send('text=' + msg);
-
     },
     list: function(){
         console.log('messages-list');
