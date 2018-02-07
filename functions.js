@@ -25,6 +25,8 @@ function formatTime(date) {
     return strTime;
 }
 
+// проверка актуальности сессии
+
 function checkLogin()
 {
     console.log('check login...')
