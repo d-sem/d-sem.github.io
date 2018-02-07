@@ -1,3 +1,8 @@
+form {
+    display: none
+}
+
+
 body {
     width: 600px;
     margin: 10px auto ;
@@ -48,7 +53,9 @@ h1 {
     display: block;
 }
 
-#post-message input{
+#post-message input,
+#edit-message input
+{
     width: 86.3%;
 }
 
@@ -62,11 +69,22 @@ h1 {
 
 .message .delete {
     position: absolute;
-    right: -12px;
-    top: -7px;
-    padding: 12px 16px 12px 16px;
+    right: -1px;
+    top: 0px;
+    padding: 5px;
 }
 
-.delete:hover {
+.message .edit {
+    position: absolute;
+    /*transform: rotate(180deg);*/
+    transform: scaleX(-1);
+    right: 15px;
+    top: 0px;
+    padding: 5px;
+}
+
+.delete:hover,
+.edit:hover {
     color: red;
 }
+
