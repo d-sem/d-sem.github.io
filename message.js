@@ -14,6 +14,21 @@ var message = {
         xhr.setRequestHeader("Authorization", token.get());
         xhr.send('text=' + msg);
     },
+    edit: function(id, msg){
+         console.log('edit message ' + id);
+
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 204) {
+                message.list();
+                //         // echo(this.responseText);
+            }
+        }
+        xhr.open("PUT",  URL + "/messages/" + id, true);
+        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhr.setRequestHeader("Authorization", token.get());
+        xhr.send('text=' + msg);
+     },
     list: function(){
         console.log('messages-list');
 
@@ -62,13 +77,13 @@ var message = {
     print: function(data) {
         var output = document.createElement('div');
         user.get_userid();
-        // data = data.slice(length);
         for (var i = 0; i < data.length; i++){
             var div = document.createElement('div');
             div.className = 'message';
+            div.dataset.message_id = data[i].id;
 
             var time = document.createElement('span');
-            time.className = 'text';
+            time.className = 'time';
             var formattedTime = formatTime(new Date(data[i].created_at));
             time.innerHTML = formattedTime;
             div.appendChild(time);
@@ -80,8 +95,20 @@ var message = {
 
             if (data[i].user_id == user.id) {
                 var span = document.createElement('span');
-                var txt = document.createTextNode("\u00D7"); // 	\u270E
-                span.dataset.message_id = data[i].id;
+                var txt = document.createTextNode("\u270E");
+                span.className = "edit";
+                span.onclick = function() {
+                    console.log('click edit')
+                    var div = this.parentElement;
+                    div.style.display = "none";
+                }
+                span.appendChild(txt);
+                div.appendChild(span);
+            }
+
+            if (data[i].user_id == user.id) {
+                var span = document.createElement('span');
+                var txt = document.createTextNode("\u00D7");
                 span.className = "delete";
                 span.onclick = function() {
                     console.log('click delete')

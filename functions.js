@@ -36,7 +36,11 @@ function checkLogin()
         button.off('auth');
         button.off('reg');
         button.on('out');
-        form.on('post-message');
+
+        if (!form.isVisible('edit-message')) {
+            form.on('post-message');
+        }
+
         message.list()
     } else {
         console.log('validate not ok');
@@ -117,20 +121,56 @@ function addEventListeners()
         e.preventDefault();
         var data = document.getElementById('post-message');
         var text = data.elements.text.value;
+        if (!!text) {
+            message.create(text);
+        }
         data.elements.text.value = '';
+        //todo: валидация
+    });
+
+    // редактирование сообщений
+
+    document.getElementById('edit-message').addEventListener('submit', function (e){
+        e.preventDefault();
+        var data = document.getElementById('edit-message');
+        data = {
+            text: data.elements.text.value,
+            id: data.elements.id.value
+        };
 
         //todo: валидация
 
-        message.create(text);
+        message.edit(data.id, data.text);
+
+        form.off('edit-message');
+        form.on('post-message');
     });
 
     // удаление сообщений
 
     document.getElementById('chat').addEventListener('click', function (e){
         if (e.target.className == 'delete') {
-            var id = e.target.dataset.message_id;
+            var id = e.target.parentElement.dataset.message_id;
             e.target.parentElement.style.display = 'none';
             message.remove(id);
+
+            message.edit(id, 1);
+        }
+    });
+
+    // редактирование сообщений
+
+    document.getElementById('chat').addEventListener('click', function (e){
+        if (e.target.className == 'edit') {
+            form.on('edit-message');
+            form.off('post-message');
+
+            var text = document.getElementById('edit-message').elements.text;
+            var id = document.getElementById('edit-message').elements.id;
+            text.focus();
+            text.value = e.target.parentElement.getElementsByClassName('text')[0].innerHTML;
+            id.value = e.target.parentElement.dataset.message_id;
+
         }
     });
 }
