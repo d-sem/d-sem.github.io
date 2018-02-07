@@ -67,15 +67,18 @@ var user = {
 
     get_userid: function(){
         console.log('get user id');
-        if (this.id) {
+        var id = localStorage.getItem('user_id');
+        if (id) {
+            this.id = id;
             console.log('user id exists');
-            return this.id;
+            return id;
         }
 
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 user.id = JSON.parse(this.responseText);
+                localStorage.setItem('user_id', user.id);
                 console.log('user id get success' + user.id);
             }
 
