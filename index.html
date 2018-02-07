@@ -56,8 +56,14 @@
     </form>
 
     <form id="post-message">
-        <input name="text" required>
+        <input name="text">
         <button type="submit">post</button>
+    </form>
+
+    <form id="edit-message">
+        <input name="id" type="hidden">
+        <input name="text" required>
+        <button type="submit">edit</button>
     </form>
 
     <script src="button.js"></script>
