@@ -9,6 +9,7 @@ var token = {
     },
     remove: function(){
         localStorage.removeItem(this.key);
+        localStorage.removeItem('user_id');
     },
     set: function(value){
         localStorage.setItem('token', value);
