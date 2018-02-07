@@ -52,6 +52,7 @@ function init()
 {
     auth.validate();
     user.list();
+    user.get_userid();
 
     setInterval(auth.validate, 10000);
 }
@@ -121,6 +122,16 @@ function addEventListeners()
         //todo: валидация
 
         message.create(text);
+    });
+
+    // удаление сообщений
+
+    document.getElementById('chat').addEventListener('click', function (e){
+        if (e.target.className == 'delete') {
+            var id = e.target.dataset.message_id;
+            e.target.parentElement.style.display = 'none';
+            message.remove(id);
+        }
     });
 }
 
