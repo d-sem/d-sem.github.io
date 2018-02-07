@@ -116,6 +116,7 @@ function addEventListeners()
         e.preventDefault();
         var data = document.getElementById('post-message');
         var text = data.elements.text.value;
+        data.elements.text.value = '';
 
         //todo: валидация
 
