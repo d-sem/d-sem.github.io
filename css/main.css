@@ -1,97 +1,93 @@
-body {
-    width: 600px;
-    margin: 10px auto ;
-    padding: 20px;
-    border:1px solid black;
-    border-radius: 10px;
+.border {
+  border: 1px solid #ffffff;
 }
-
+body {
+  width: 600px;
+  margin: 10px auto;
+  padding: 20px;
+  background-color: #2500dd;
+  color: #ffffff;
+  border: 1px solid #ffffff;
+  border-radius: 10px;
+}
 /*
  * Панель авторизации
  */
-
 #auth-panel {
-    margin-bottom: 10px;
-    position: relative;
+  margin-bottom: 10px;
+  position: relative;
 }
-
-#auth-panel button{
-    display: none
+#auth-panel button {
+  display: none;
 }
-
-#auth-panel div{
-    position: absolute;
-    right: 0;
-    top: -1px;
+#auth-panel div {
+  position: absolute;
+  right: 0;
+  top: -1px;
 }
-
 h1 {
-    font-size: 21px;
-    margin-top: 0px;
+  font-size: 21px;
+  margin-top: 0px;
 }
-
 form {
-    display: none
+  display: none;
 }
-
 #form-auth,
-#form-reg{
-    display: none;
+#form-reg {
+  display: none;
 }
-
 /*
  * Сообщения
  */
-
 div.message {
-    border: 1px solid black;
-    border-radius: 5px;
-    position: relative;
-    padding: 5px;
-    margin-bottom: 10px;
+  border: 1px solid #ffffff;
+  border-radius: 5px;
+  position: relative;
+  padding: 5px;
+  margin-bottom: 10px;
 }
-
 div.message * {
-    margin-right: 5px;
+  margin-right: 5px;
 }
-
 .message .delete {
-    position: absolute;
-    right: -1px;
-    top: 0px;
-    padding: 5px;
+  position: absolute;
+  right: -1px;
+  top: 0px;
+  padding: 5px;
 }
-
 .message .edit {
-    position: absolute;
-    transform: scaleX(-1);
-    right: 15px;
-    top: 0px;
-    padding: 5px;
+  position: absolute;
+  transform: scaleX(-1);
+  right: 15px;
+  top: 0px;
+  padding: 5px;
 }
-
 .message .delete:hover,
 .message .edit:hover {
-    color: red;
+  color: #ff1c18;
 }
-
+.message:hover {
+  background-color: #2800ec;
+  color: #e6e6e6;
+}
 .message .name {
-    font-weight: bold;
+  font-weight: bold;
 }
-
 /*
  * Отправка сообщений
  */
-
 #chat {
-    margin-bottom: 20px
+  margin-bottom: 20px;
 }
-
 #post-message input,
-#edit-message input
-{
-    width: 86.3%;
+#edit-message input {
+  width: 89.3%;
 }
-
-
+button {
+  color: #ffffff;
+  font-weight: bold;
+  background-color: #2500dd;
+  padding: 3px;
+  border-radius: 3px;
+}
 /* test */
