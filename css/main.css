@@ -5,7 +5,7 @@ body {
   width: 600px;
   margin: 10px auto;
   padding: 20px;
-  background-color: #2500dd;
+  background-color: #41dedf;
   color: #ffffff;
   border: 1px solid #ffffff;
   border-radius: 10px;
@@ -49,29 +49,29 @@ div.message {
 div.message * {
   margin-right: 5px;
 }
-.message .delete {
+div.message .delete {
   position: absolute;
   right: -1px;
   top: 0px;
   padding: 5px;
 }
-.message .edit {
+div.message .edit {
   position: absolute;
   transform: scaleX(-1);
   right: 15px;
   top: 0px;
   padding: 5px;
 }
-.message .delete:hover,
-.message .edit:hover {
+div.message .delete:hover,
+div.message .edit:hover {
   color: #ff1c18;
 }
-.message:hover {
-  background-color: #2800ec;
-  color: #e6e6e6;
-}
-.message .name {
+div.message .name {
   font-weight: bold;
+}
+.message:hover {
+  background-color: #46eeef;
+  color: #e6e6e6;
 }
 /*
  * Отправка сообщений
@@ -86,8 +86,7 @@ div.message * {
 button {
   color: #ffffff;
   font-weight: bold;
-  background-color: #2500dd;
+  background-color: #41dedf;
   padding: 3px;
   border-radius: 3px;
 }
-/* test */
